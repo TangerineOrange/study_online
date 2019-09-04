@@ -3,45 +3,32 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import UserAsk, UserCourse, UserMessage, CourseComments, UserFavorite
-
-class UserAskAdmin(admin.ModelAdmin):
-    list_display = ['name', 'mobile', 'course_name', 'add_time']
-    search_fields = ['name', 'mobile', 'course_name']
-    list_filter = ['name', 'mobile', 'course_name', 'add_time']
-    model_icon = 'fa fa-question-circle'
+from .models import CityDict, CourseOrg, Teacher
 
 
-class UserCourseAdmin(admin.ModelAdmin):
-    list_display = ['user', 'course', 'add_time']
-    search_fields = ['user', 'course']
-    list_filter = ['user', 'course', 'add_time']
-    model_icon = 'fa fa-address-book'
-
-class UserMessageAdmin(admin.ModelAdmin):
-    list_display = ['user', 'message', 'has_read', 'add_time']
-    search_fields = ['user', 'message', 'has_read']
-    list_filter = ['user', 'message', 'has_read', 'add_time']
-    model_icon = 'fa fa-envelope-o'
+class CityDictAdmin(admin.ModelAdmin):
+    list_display = ['name', 'desc', 'add_time']
+    search_fields = ['name', 'desc']
+    list_filter = ['name', 'desc', 'add_time']
+    model_icon = 'fa fa-university'
 
 
-class CourseCommentsAdmin(admin.ModelAdmin):
-    list_display = ['user', 'course', 'comments', 'add_time']
-    search_fields = ['user', 'course', 'comments']
-    list_filter = ['user', 'course', 'comments', 'add_time']
-    model_icon = 'fa fa-comment'
+class CourseOrgAdmin(admin.ModelAdmin):
+    list_display = ['name', 'desc', 'click_num', 'fav_num']
+    search_fields = ['name', 'desc', 'click_num', 'fav_num']
+    list_filter = ['name', 'desc', 'click_num', 'fav_num']
+    relfield_style = 'fk-ajax'
+    style_fields = {"desc": "ueditor"}
+    model_icon = 'fa fa-university'
 
 
-class UserFavoriteAdmin(admin.ModelAdmin):
-    list_display = ['user', 'fav_id', 'fav_type', 'add_time']
-    search_fields = ['user', 'fav_id', 'fav_type']
-    list_filter = ['user', 'fav_id', 'fav_type', 'add_time']
-    model_icon = 'fa fa-heart'
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ['org', 'name', 'work_years', 'work_company']
+    search_fields = ['org', 'name', 'work_years', 'work_company']
+    list_filter = ['org', 'name', 'work_years', 'work_company']
+    model_icon = 'fa fa-user-md'
 
 
-admin.site.register(UserAsk, UserAskAdmin)
-admin.site.register(UserCourse, UserCourseAdmin)
-admin.site.register(UserMessage, UserMessageAdmin)
-admin.site.register(CourseComments, CourseCommentsAdmin)
-admin.site.register(UserFavorite, UserFavoriteAdmin)
-
+admin.site.register(CityDict, CityDictAdmin)
+admin.site.register(CourseOrg, CourseOrgAdmin)
+admin.site.register(Teacher, TeacherAdmin)

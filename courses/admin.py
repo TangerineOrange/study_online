@@ -24,9 +24,9 @@ class VideoAdmin(admin.ModelAdmin):
 
 
 class CourseResourceAdmin(admin.ModelAdmin):
-    list_display = ['course', 'name', 'add_time', 'download',]
+    list_display = ['course', 'name', 'add_time', 'download', ]
     search_fields = ['course', 'name', 'download', ]
-    list_filter = ['course', 'name','download', 'add_time']
+    list_filter = ['course', 'name', 'download', 'add_time']
 
 
 admin.site.register(Course, CourseAdmin)
