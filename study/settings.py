@@ -30,6 +30,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
+AUTHENTICATION_BACKENDS = {
+    'users.views.CustomBackend',
+}
 
 INSTALLED_APPS = [
     'simpleui',
@@ -82,8 +85,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'study_online',
-        'USER': 'frank',
-        'PASSWORD': '123',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
