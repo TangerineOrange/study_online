@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 from django.urls import reverse
+from django.views.generic.base import RedirectView
+
 from users.models import UserProfile
 
 
@@ -20,6 +22,25 @@ class CustomBackend(ModelBackend):
                 return user
         except Exception as e:
             return None
+
+
+class LoginView(RedirectView):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'login.html', {'result': ''})
+
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        print(username)
+        print(password)
+        if all([username, password]):
+            user = authenticate(username=username, password=password)
+            print(user)
+            if user is not None:
+                login(request, user)
+                return render(request, 'index.html')
+        t = time.strftime('%H:%M:%S', time.localtime(time.time()))
+        return render(request, 'login.html', {'result': ('登陆失败' + t)})
 
 
 def user_login(request):
