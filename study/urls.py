@@ -15,13 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.views.generic import TemplateView
-from django.urls import path
+from django.urls import path, include
 
-from users.views import user_login, user_logout, LoginView
+
+from users.views import user_login, user_logout, LoginView, RegisterView, ActiveUserView
+
+# from study.users.views import LoginView
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', user_logout, name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('captcha/', include('captcha.urls')),
+    path(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name='active'),
+
 ]

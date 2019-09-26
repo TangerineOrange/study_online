@@ -28,6 +28,7 @@ SECRET_KEY = 'i5cr+%-xqu8#4%s^r@)%x&u97)%ej#htn51ek6-s94s99lwomt'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = "users.UserProfile"
 
 # Application definition
 AUTHENTICATION_BACKENDS = {
@@ -46,6 +47,8 @@ INSTALLED_APPS = [
     'courses',
     'origanization',
     'operation',
+    'captcha',
+    # 'apps',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +98,6 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "users.UserProfile"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -185,3 +187,13 @@ SIMPLEUI_CONFIG = {
     #     }]
     # }]
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = "smtp.office365.com"  # 设置服务器
+EMAIL_PORT = 587  # 设置服务器
+EMAIL_HOST_USER = "likeOrangeForWork@outlook.com"  # 用户名
+EMAIL_HOST_PASSWORD = "LOFWasdasd346"
+# EMAIL_USE_TLS = False
+EMAIL_FROM = "likeOrangeForWork@outlook.com"

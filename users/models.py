@@ -18,7 +18,6 @@ class UserProfile(AbstractUser):
         max_length=11, verbose_name=u"手机", null=True, blank=True)
     avatar = models.ImageField(
         upload_to="image/%y/%m", verbose_name=u"头像", default='image/default_avator.svg')
-
     class Meta:
         verbose_name = u"用户信息"
         verbose_name_plural = verbose_name
